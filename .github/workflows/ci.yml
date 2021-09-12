@@ -16,4 +16,4 @@ jobs:
       - name: build with maven
         run: mvn -s settings.xml -B package
         env:
-          GITHUB_TOKEN: ${{ secrets.GHPKG_TOKEN }} # автоматически настраиваемый токен, который позволяет публиковать пакеты (packages: write)
+          GHPKG_TOKEN: ${{ secrets.GHPKG_TOKEN }} # автоматически настраиваемый токен, который позволяет публиковать пакеты (packages: write)
