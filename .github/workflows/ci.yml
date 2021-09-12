@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -16,4 +16,4 @@ jobs:
       - name: build with maven
         run: mvn -s settings.xml -B package
         env:
-          GHPKG_TOKEN: ${{ secrets.GHPKG_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHPKG_TOKEN }}
