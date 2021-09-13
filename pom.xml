@@ -6,7 +6,7 @@
 
     <groupId>ru.xodavit</groupId>
     <artifactId>simple-consumer</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>ru.xodavit</groupId>
       <artifactId>http-server</artifactId>
-      <version>1.2</version>
+      <version>1.2.6</version>
     </dependency>
     </dependencies>
     
