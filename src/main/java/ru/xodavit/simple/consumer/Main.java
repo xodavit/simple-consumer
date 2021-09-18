@@ -1,33 +1,28 @@
 package ru.xodavit.simple.consumer;
 
-
-import ru.xodavit.http.server.framework.HttpServer;
-
-import java.io.IOException;
+import ru.xodavit.http.server.framework.Server;
+import ru.xodavit.http.server.framework.resolver.argument.RequestHandlerMethodArgumentResolver;
+import ru.xodavit.http.server.framework.resolver.argument.RequestHeaderHandlerMethodArgumentResolver;
+import ru.xodavit.http.server.framework.resolver.argument.ResponseHandlerMethodArgumentResolver;
 
 public class Main {
     public static void main(String[] args) {
-        new Thread(() -> {
-            try {
-                ru.xodavit.http.server.app.Main.main(args);
-            } catch ( IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
 
-        HttpServer server = null;
-        try {
-           server = new HttpServer(9998);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        server.listen();
-        System.out.println(server.isStopped());
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(server.isStopped());
+        final var server = new Server();
+        server.autoRegisterHandlers("ru.xodavit.simple.consumer.app");
+        server.addArgumentResolver(
+                new RequestHandlerMethodArgumentResolver(),
+                new ResponseHandlerMethodArgumentResolver(),
+                new RequestHeaderHandlerMethodArgumentResolver()
+        );
+//        new Thread(() -> {
+//            try {
+//                Thread.sleep(10000);
+//                server.stop();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }).start();
+        server.listen(9999);
     }
 }
